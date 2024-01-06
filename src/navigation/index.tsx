@@ -15,7 +15,7 @@ const RootNavigator = () => {
       <RootStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerShown: true }}
+        options={{ headerShown: true, title: "Welcome!" }}
       />
       <RootStack.Screen
         name="SymptomTrackerScreen"

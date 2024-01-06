@@ -1,6 +1,7 @@
+import { Entypo } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
-import { Button, Text, View } from "react-native";
 import { RootStackParamList } from "../../navigation";
+import { AddNewSymptomButton, Container, Placeholder } from "./styles";
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "HomeScreen">;
@@ -8,19 +9,16 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Text style={{ fontSize: 30 }}>This is the home screen!</Text>
-      <Button
+    <Container>
+      <Placeholder>
+        {`This is where your tracked symptoms show up.\n\nClick on the button below to add a new symptom!`}{" "}
+      </Placeholder>
+      <AddNewSymptomButton
         onPress={() => navigation.navigate("SymptomTrackerScreen")}
-        title="Open Symptom Tracker"
-      />
-    </View>
+      >
+        <Entypo name="plus" size={32} color="white" />
+      </AddNewSymptomButton>
+    </Container>
   );
 };
 
