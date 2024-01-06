@@ -1,15 +1,10 @@
 import { Entypo } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
+import { FlashList } from "@shopify/flash-list";
+import SymptomListItem from "../../components/SymptomListItem";
 import { dummyData } from "../../dummy";
 import { RootStackParamList } from "../../navigation";
-import {
-  AddNewSymptomButton,
-  Container,
-  Placeholder,
-  SymptomsList,
-} from "./styles";
-import SymptomListItem from "../../components/SymptomListItem";
-import { FlashList } from "@shopify/flash-list";
+import { AddNewSymptomButton, Container, Placeholder } from "./styles";
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "HomeScreen">;

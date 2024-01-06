@@ -29,7 +29,7 @@ const SymptomListItem: React.FC<SymptomListItemProps> = ({ symptom }) => {
       <LeftContainer>
         <Name>{symptom.name}</Name>
         <Description ellipsizeMode="tail" numberOfLines={2}>
-          {symptom.description}
+          {symptom.description || "..."}
         </Description>
       </LeftContainer>
       <RightContainer>

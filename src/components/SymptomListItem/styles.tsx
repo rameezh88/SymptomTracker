@@ -4,9 +4,12 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   flex: 1;
   flex-direction: row;
-  padding-horizontal: 15px;
+  padding-horizontal: 5px;
+  padding-bottom: 10px;
   margin-vertical: 10px;
-  width: 100%;
+  margin-horizontal: 15px;
+  border-bottom-width: 0.5px;
+  border-bottom-color: #9f9f9f;
 `;
 
 export const LeftContainer = styled.View`

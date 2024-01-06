@@ -1,3 +1,4 @@
+import { colors } from "../constants/colors";
 import HomeScreen from "../screens/HomeScreen";
 import SymptomTrackerScreen from "../screens/SymptomTrackerScreen";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,11 +12,21 @@ const RootStack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   return (
-    <RootStack.Navigator>
+    <RootStack.Navigator
+      screenOptions={{
+        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+      }}
+    >
       <RootStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerShown: true, title: "Welcome!" }}
+        options={{
+          headerShown: true,
+          title: "Symptom Tracker",
+        }}
       />
       <RootStack.Screen
         name="SymptomTrackerScreen"

@@ -1,5 +1,5 @@
-import { FlashList } from "@shopify/flash-list";
 import styled from "styled-components/native";
+import { colors } from "../../constants/colors";
 
 export const Container = styled.View`
   flex: 1;
@@ -20,7 +20,7 @@ export const AddNewSymptomButton = styled.Pressable`
   shadow-offset: 0px 4px;
   z-index: 10;
   shadow-opacity: 1;
-  background-color: pink;
+  background-color: ${colors.primary};
   position: absolute;
   bottom: 20px;
   right: 20px;

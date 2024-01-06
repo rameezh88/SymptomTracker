@@ -1,7 +1,4 @@
-import {
-  NavigationProp,
-  NavigatorScreenParams,
-} from "@react-navigation/native";
+import { NavigationProp } from "@react-navigation/native";
 import { Button, Text, View } from "react-native";
 import { RootStackParamList } from "../../navigation";
 

@@ -1,5 +1,6 @@
 export const colors = {
-  primary: "",
+  primary: "#DC97BA",
+  secondary: "##C5DBFA",
   severity: {
     veryLow: "#70DAE6",
     low: "#B0EB74",

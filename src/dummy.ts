@@ -39,4 +39,12 @@ export const dummyData: Symptom[] = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
     time: "2023-12-26T20:40:12Z",
   },
+  {
+    id: "adfeadfes",
+    name: "Existential crisis",
+    severity: SymptomSeverity.Medium,
+    description:
+      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
+    time: "2023-11-26T20:40:12Z",
+  },
 ];
