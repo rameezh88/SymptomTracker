@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SymptomSeverity } from "../../types";
+import { SymptomSeverity } from "../../../types";
 import {
   Container,
   OptionsContainer,
@@ -7,8 +7,8 @@ import {
   SeverityOptionButton,
   SeverityTitle,
 } from "./styles";
-import { SymptomTrackerUpdateComponent } from "../../screens/SymptomTrackerScreen";
-import { Title } from "../common";
+import { SymptomTrackerUpdateComponent } from "../../../screens/SymptomTrackerScreen";
+import { Title } from "../../common";
 
 interface SeverityScaleItem {
   title: string;
