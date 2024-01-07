@@ -30,7 +30,9 @@ export interface SymptomTrackerUpdateComponent {
 const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   navigation,
 }) => {
+  // Keeps track of the current step in the symptom tracker.
   const [currentStep, setCurrentStep] = useState(0);
+  // State object where all the symptom fields will be recorded
   const [symptom, setSymptom] = useState<Symptom>({
     name: null,
     date: null,
@@ -39,11 +41,13 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   });
 
   const handlePreviousPress = () => {
+    // Go to the previous symptom tracking step
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
   const handleNextPress = () => {
+    // Go to the next symptom tracking step
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
@@ -54,6 +58,10 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   };
 
   const { currentValue, nextButtonDisabled } = useMemo(() => {
+    // Returns the following:
+    // currentValue: The current value of the symptom in the current step
+    // nextButtonDisabled: Whether or not the next button should be disabled
+
     // console.log(
     //   "Current symptom field",
     //   steps[currentStep].symptomField,
@@ -64,6 +72,8 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
 
     let nextButtonDisabled = false;
     switch (field) {
+      // Unique check for each of the symptom fields if the value is
+      // valid or not
       case SymptomEntryType.Name:
         nextButtonDisabled = isEmpty(currentValue);
         break;
@@ -81,6 +91,11 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   }, [currentStep, symptom]);
 
   const { Component, nextButtonVisible, previousButtonVisible } =
+    // Calculates and returns the following:
+    // Component: The component to be rendered in the symptom tracker
+    // nextButtonVisible: Whether or not the next button should be visible. Eg. It should be hidden in the final step.
+    // previousButtonVisible: Whether or not the previous button should be visible. Eg. It should be hidden in the first and final steps.
+
     useMemo(() => {
       return {
         previousButtonVisible:
@@ -115,6 +130,7 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
             <FontAwesome name="arrow-left" size={24} color="white" />
           </PreviousButton>
         ) : (
+          // Just a dummy view of the same size as the hidden button
           <DummyView />
         )}
         {nextButtonVisible ? (
@@ -126,6 +142,7 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
             />
           </NextButton>
         ) : (
+          // Just a dummy view of the same size as the hidden button
           <DummyView />
         )}
       </BottomContainer>

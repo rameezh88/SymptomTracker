@@ -15,20 +15,24 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = ({
   value,
   onValueChange,
 }) => {
+  // Date value initialed if it has already been set
   const [date, setDate] = useState<Date | null>(() => {
     if (value && value instanceof Date) {
       return value;
     }
     return null;
   });
+  // Time value initialed if it has already been set
   const [time, setTime] = useState<Date | null>(() => {
     if (value && value instanceof Date) {
       return value;
     }
     return null;
   });
+  // Determines if the date and time picker modal should be visible
   const [dateTimePickerVisible, setDateTimePickerVisible] =
     useState<boolean>(false);
+  // Determines the mode of the date and time picker. eg. "date" or "time"
   const [dateTimePickerMode, setDateTimePickerMode] =
     useState<DateTimePickerMode>("date");
 
@@ -52,6 +56,8 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = ({
     }
   };
 
+  // Calculates the date and time string based on the date and time value selected using
+  // preset formats
   const { dateString, timeString } = useMemo(
     () => ({
       dateString: date ? format(date, "yyyy-MM-dd") : "Pick a date",
@@ -72,6 +78,7 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = ({
       }
 
       if (fullDate) {
+        // Updates the date and time value in the SymptomTrackerScreen parent component
         onValueChange(fullDate);
       }
     }
