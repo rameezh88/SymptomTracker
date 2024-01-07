@@ -2,6 +2,7 @@ import { Text } from "react-native";
 import { SymptomTrackerUpdateComponent } from ".";
 import NameEntry from "../../components/symptom-tracker/NameEntry";
 import { SymptomEntryType } from "../../types";
+import DateTimeEntry from "../../components/symptom-tracker/DateTimeEntry";
 
 export interface SymptomTrackerScreenStep {
   symptomField?: SymptomEntryType;
@@ -15,7 +16,7 @@ export const steps: SymptomTrackerScreenStep[] = [
   },
   {
     symptomField: SymptomEntryType.Date,
-    Component: () => <Text>Date</Text>,
+    Component: DateTimeEntry,
   },
   {
     symptomField: SymptomEntryType.Severity,

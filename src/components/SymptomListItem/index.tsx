@@ -17,12 +17,12 @@ export type SymptomListItemProps = {
 
 const SymptomListItem: React.FC<SymptomListItemProps> = ({ symptom }) => {
   const dateTime = useMemo(() => {
-    if (differenceInDays(new Date(), new Date(symptom.time)) < 1) {
-      return format(symptom.time, "HH:mm");
+    if (differenceInDays(new Date(), new Date(symptom.date)) < 1) {
+      return format(symptom.date, "HH:mm");
     } else {
-      return formatDistance(new Date(symptom.time), new Date());
+      return formatDistance(new Date(symptom.date), new Date());
     }
-  }, [symptom.time]);
+  }, [symptom.date]);
 
   return (
     <Container>

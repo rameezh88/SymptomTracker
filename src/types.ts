@@ -18,5 +18,5 @@ export type Symptom = {
   name: SymptomEntryType | null;
   severity: SymptomSeverity | null;
   description?: string;
-  time: string;
+  date: string | null;
 };

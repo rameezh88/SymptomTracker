@@ -7,7 +7,7 @@ export const dummyData: Symptom[] = [
     severity: SymptomSeverity.VeryHigh,
     description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
-    time: "2024-01-06T20:40:12Z",
+    date: "2024-01-06T20:40:12Z",
   },
   {
     id: "garege",
@@ -15,7 +15,7 @@ export const dummyData: Symptom[] = [
     severity: SymptomSeverity.VeryLow,
     description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
-    time: "2024-01-06T20:40:12Z",
+    date: "2024-01-06T20:40:12Z",
   },
   {
     id: "garegsdfae",
@@ -23,13 +23,13 @@ export const dummyData: Symptom[] = [
     severity: SymptomSeverity.Low,
     description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
-    time: "2024-01-04T20:40:12Z",
+    date: "2024-01-04T20:40:12Z",
   },
   {
     id: "gregaer",
     name: "Extreme Pain",
     severity: SymptomSeverity.High,
-    time: "2024-01-05T20:40:12Z",
+    date: "2024-01-05T20:40:12Z",
   },
   {
     id: "adfea",
@@ -37,7 +37,7 @@ export const dummyData: Symptom[] = [
     severity: SymptomSeverity.Low,
     description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
-    time: "2023-12-26T20:40:12Z",
+    date: "2023-12-26T20:40:12Z",
   },
   {
     id: "adfeadfes",
@@ -45,6 +45,6 @@ export const dummyData: Symptom[] = [
     severity: SymptomSeverity.Medium,
     description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
-    time: "2023-11-26T20:40:12Z",
+    date: "2023-11-26T20:40:12Z",
   },
 ];

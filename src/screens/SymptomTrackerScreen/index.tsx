@@ -20,9 +20,11 @@ interface SymptomTrackerScreenProps {
   navigation: NavigationProp<RootStackParamList, "SymptomTrackerScreen">;
 }
 
+export type SymptomValue = string | Date;
+
 export interface SymptomTrackerUpdateComponent {
-  value?: string;
-  onValueChange?: (value: string) => void;
+  value?: SymptomValue;
+  onValueChange?: (value: SymptomValue) => void;
 }
 
 const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
@@ -31,7 +33,7 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   const [currentStep, setCurrentStep] = useState(0);
   const [symptom, setSymptom] = useState<Symptom>({
     name: null,
-    time: "",
+    date: null,
     severity: null,
     description: "",
   });
@@ -57,14 +59,16 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
     //   steps[currentStep].symptomField,
     //   symptom
     // );
-    const currentValue = steps[currentStep].symptomField
-      ? symptom[steps[currentStep].symptomField]
-      : null;
+    const field = steps[currentStep].symptomField;
+    const currentValue = field ? symptom[field] : null;
 
     let nextButtonDisabled = false;
-    switch (steps[currentStep].symptomField) {
+    switch (field) {
       case SymptomEntryType.Name:
         nextButtonDisabled = isEmpty(currentValue);
+        break;
+      case SymptomEntryType.Date:
+        nextButtonDisabled = !currentValue;
         break;
       default:
         nextButtonDisabled = false;
@@ -87,14 +91,12 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
       };
     }, [currentStep]);
 
-  const handleValueChange = (value: any) => {
-    // console.log("value changed", value);
-    let field = null;
-    if (currentStep === 0) {
-      field = SymptomEntryType.Name;
+  const handleValueChange = (value: SymptomValue) => {
+    let field = steps[currentStep].symptomField;
+    if (field) {
+      // console.log("value changed", field, value);
+      setSymptom({ ...symptom, [field]: value });
     }
-
-    setSymptom({ ...symptom, [SymptomEntryType.Name]: value });
   };
 
   return (
