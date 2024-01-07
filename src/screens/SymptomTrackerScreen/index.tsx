@@ -88,7 +88,6 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
       </Header>
       <TopContainer>
         <Text style={{ fontSize: 30 }}>
-          {/* This is the symptom tracker screen! */}
           <Component />
         </Text>
       </TopContainer>
@@ -102,7 +101,11 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
         )}
         {nextButtonVisible ? (
           <NextButton onPress={handleNextPress}>
-            <FontAwesome name="arrow-right" size={24} color="white" />
+            <FontAwesome
+              name={currentStep < steps.length - 2 ? "arrow-right" : "check"}
+              size={24}
+              color="white"
+            />
           </NextButton>
         ) : (
           <DummyView />
