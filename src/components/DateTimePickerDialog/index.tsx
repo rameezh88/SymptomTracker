@@ -57,6 +57,7 @@ const DateTimePickerDialog: React.FC<DateTimePickerDialogProps> = ({
             value={rawDateValue || new Date()}
             mode={mode}
             is24Hour={true}
+            maximumDate={new Date()}
             onChange={onDateChange}
             display="spinner"
           />
