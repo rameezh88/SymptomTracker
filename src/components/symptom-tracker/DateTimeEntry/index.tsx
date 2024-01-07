@@ -60,7 +60,7 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = ({
   // preset formats
   const { dateString, timeString } = useMemo(
     () => ({
-      dateString: date ? format(date, "yyyy-MM-dd") : "Pick a date",
+      dateString: date ? format(date, "dd-MM-yyyy") : "Pick a date",
       timeString: time ? format(time, "HH:mm") : "Pick a time",
     }),
     [date, time]
