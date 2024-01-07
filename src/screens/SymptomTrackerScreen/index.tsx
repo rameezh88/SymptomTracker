@@ -25,7 +25,7 @@ interface SymptomTrackerScreenProps {
 export type SymptomValue = string | Date | SymptomSeverity;
 
 export interface SymptomTrackerUpdateComponent {
-  value?: SymptomValue;
+  value?: SymptomValue | null;
   onValueChange?: (value: SymptomValue) => void;
 }
 
