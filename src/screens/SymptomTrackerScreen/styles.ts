@@ -5,6 +5,13 @@ export const Container = styled.View`
   flex: 1;
 `;
 
+export const Header = styled.View`
+  flex-direction: row;
+  padding: 20px;
+  width: 100%;
+  background-color: grey;
+`;
+
 export const TopContainer = styled.View`
   flex: 1;
   padding: 20px;
@@ -21,6 +28,13 @@ export const BottomContainer = styled.View`
   background-color: red;
   justify-content: space-between;
 `;
+
+export const DummyView = styled.View`
+  height: 60px;
+  width: 60px;
+`;
+
+export const CloseButton = styled.Pressable``;
 
 export const PreviousButton = styled(RoundButton)``;
 
