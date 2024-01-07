@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SymptomSeverity } from "../../types";
 import {
   Container,
@@ -12,7 +13,7 @@ interface SeverityScaleItem {
   selected: boolean;
 }
 
-const severityScale: SeverityScaleItem[] = [
+const severityScaleInitalValue: SeverityScaleItem[] = [
   { title: "Very Low", severity: SymptomSeverity.VeryLow, selected: false },
   { title: "Low", severity: SymptomSeverity.Low, selected: false },
   { title: "Medium", severity: SymptomSeverity.Medium, selected: false },
@@ -21,10 +22,32 @@ const severityScale: SeverityScaleItem[] = [
 ];
 
 const SeveritySelector = () => {
+  const [severityScale, setSeverityScale] = useState(severityScaleInitalValue);
+
+  const handleSeveritySelected = (severity: SeverityScaleItem) => {
+    setSeverityScale(
+      severityScaleInitalValue.map((item) => {
+        if (item.severity === severity.severity) {
+          return {
+            ...item,
+            selected: !item.selected,
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <Container>
       {severityScale.map((item, index) => (
-        <SeverityOptionButton key={index}>
+        <SeverityOptionButton
+          selected={item.selected}
+          onPress={() => {
+            handleSeveritySelected(item);
+          }}
+          key={index}
+        >
           <Severity severity={item.severity} />
           <SeverityTitle>{item.title}</SeverityTitle>
         </SeverityOptionButton>

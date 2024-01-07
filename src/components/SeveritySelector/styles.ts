@@ -19,7 +19,7 @@ export const SeverityTitle = styled.Text`
   margin-horizontal: 5px;
 `;
 
-export const SeverityOptionButton = styled.Pressable`
+export const SeverityOptionButton = styled.Pressable<{ selected?: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -29,4 +29,6 @@ export const SeverityOptionButton = styled.Pressable`
   background-color: ${colors.lightPink};
   padding-vertical: 8px;
   border-radius: 10px;
+  border-width: 1.5px;
+  border-color: ${(props) => (props.selected ? colors.primary : "transparent")};
 `;
