@@ -6,10 +6,17 @@ export enum SymptomSeverity {
   VeryLow = "VeryLow",
 }
 
+export enum SymptomEntryType {
+  Name = "name",
+  Date = "date",
+  Severity = "severity",
+  Description = "description",
+}
+
 export type Symptom = {
-  id: string;
-  name: string;
-  severity: SymptomSeverity;
+  id?: string;
+  name: SymptomEntryType | null;
+  severity: SymptomSeverity | null;
   description?: string;
   time: string;
 };
