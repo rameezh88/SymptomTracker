@@ -16,6 +16,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   return (
     <Container>
+      {/* Show symptoms when we have them */}
       {symptoms && (
         <FlashList
           data={symptoms}
@@ -23,11 +24,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           estimatedItemSize={200}
         />
       )}
+      {/* Show a placeholder when we have no symptoms */}
       {!symptoms && (
         <Placeholder>
           {`This is where your tracked symptoms show up.\n\nClick on the button below to add a new symptom!`}{" "}
         </Placeholder>
       )}
+      {/* Add symptom button that navigates to the symptom-tracker modal */}
       <AddNewSymptomButton
         onPress={() => navigation.navigate("SymptomTrackerScreen")}
       >
