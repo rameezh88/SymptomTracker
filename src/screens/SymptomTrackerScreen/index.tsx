@@ -2,7 +2,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
 import { useMemo, useState } from "react";
 import { RootStackParamList } from "../../navigation";
-import { Symptom, SymptomEntryType } from "../../types";
+import { Symptom, SymptomEntryType, SymptomSeverity } from "../../types";
 import {
   BottomContainer,
   CloseButton,
@@ -20,7 +20,7 @@ interface SymptomTrackerScreenProps {
   navigation: NavigationProp<RootStackParamList, "SymptomTrackerScreen">;
 }
 
-export type SymptomValue = string | Date;
+export type SymptomValue = string | Date | SymptomSeverity;
 
 export interface SymptomTrackerUpdateComponent {
   value?: SymptomValue;
@@ -78,6 +78,7 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
         nextButtonDisabled = isEmpty(currentValue);
         break;
       case SymptomEntryType.Date:
+      case SymptomEntryType.Severity:
         nextButtonDisabled = !currentValue;
         break;
       default:
