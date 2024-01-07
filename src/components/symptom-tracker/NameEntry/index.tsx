@@ -11,7 +11,7 @@ const NameEntry: React.FC<NameEntryProps> = ({ value, onValueChange }) => {
       <Title>What are you feeling?</Title>
       <NameEntryField
         placeholder="Pain, Nausea, etc..."
-        value={value}
+        value={value as string}
         onChangeText={onValueChange}
       />
     </Container>
