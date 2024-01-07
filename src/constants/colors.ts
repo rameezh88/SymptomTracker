@@ -2,6 +2,7 @@ export const colors = {
   primary: "#DC97BA",
   secondary: "#C5DBFA",
   disabled: "#aeaeae",
+  lightPink: "#ffeffe",
   severity: {
     veryLow: "#70DAE6",
     low: "#B0EB74",

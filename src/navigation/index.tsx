@@ -31,7 +31,13 @@ const RootNavigator = () => {
       <RootStack.Screen
         name="SymptomTrackerScreen"
         component={SymptomTrackerScreen}
-        options={{ presentation: "modal", headerShown: false }}
+        options={{
+          presentation: "modal",
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "white",
+          },
+        }}
       />
     </RootStack.Navigator>
   );

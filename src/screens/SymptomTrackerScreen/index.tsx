@@ -91,12 +91,11 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   }, [currentStep, symptom]);
 
   const { Component, nextButtonVisible, previousButtonVisible } =
-    // Calculates and returns the following:
-    // Component: The component to be rendered in the symptom tracker
-    // nextButtonVisible: Whether or not the next button should be visible. Eg. It should be hidden in the final step.
-    // previousButtonVisible: Whether or not the previous button should be visible. Eg. It should be hidden in the first and final steps.
-
     useMemo(() => {
+      // Calculates and returns the following:
+      // Component: The component to be rendered in the symptom tracker
+      // nextButtonVisible: Whether or not the next button should be visible. Eg. It should be hidden in the final step.
+      // previousButtonVisible: Whether or not the previous button should be visible. Eg. It should be hidden in the first and final steps.
       return {
         previousButtonVisible:
           currentStep > 0 && currentStep < steps.length - 1,

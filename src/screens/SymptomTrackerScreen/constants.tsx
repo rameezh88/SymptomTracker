@@ -3,6 +3,7 @@ import { SymptomTrackerUpdateComponent } from ".";
 import NameEntry from "../../components/symptom-tracker/NameEntry";
 import { SymptomEntryType } from "../../types";
 import DateTimeEntry from "../../components/symptom-tracker/DateTimeEntry";
+import SeveritySelector from "../../components/SeveritySelector";
 
 export interface SymptomTrackerScreenStep {
   symptomField?: SymptomEntryType;
@@ -20,7 +21,7 @@ export const steps: SymptomTrackerScreenStep[] = [
   },
   {
     symptomField: SymptomEntryType.Severity,
-    Component: () => <Text>Severity</Text>,
+    Component: SeveritySelector,
   },
   {
     symptomField: SymptomEntryType.Description,
