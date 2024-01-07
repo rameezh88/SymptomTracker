@@ -1,8 +1,11 @@
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
+import { isEmpty } from "lodash";
 import { useMemo, useState } from "react";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { RootStackParamList } from "../../navigation";
 import { Symptom, SymptomEntryType, SymptomSeverity } from "../../types";
+import { steps } from "./constants";
 import {
   BottomContainer,
   CloseButton,
@@ -11,10 +14,9 @@ import {
   Header,
   NextButton,
   PreviousButton,
+  Progress,
   TopContainer,
 } from "./styles";
-import { steps } from "./constants";
-import { isEmpty } from "lodash";
 
 interface SymptomTrackerScreenProps {
   navigation: NavigationProp<RootStackParamList, "SymptomTrackerScreen">;
@@ -61,12 +63,6 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
     // Returns the following:
     // currentValue: The current value of the symptom in the current step
     // nextButtonDisabled: Whether or not the next button should be disabled
-
-    // console.log(
-    //   "Current symptom field",
-    //   steps[currentStep].symptomField,
-    //   symptom
-    // );
     const field = steps[currentStep].symptomField;
     const currentValue = field ? symptom[field] : null;
 
@@ -91,25 +87,26 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
     };
   }, [currentStep, symptom]);
 
-  const { Component, nextButtonVisible, previousButtonVisible } =
+  const { Component, nextButtonVisible, previousButtonVisible, progress } =
     useMemo(() => {
       // Calculates and returns the following:
       // Component: The component to be rendered in the symptom tracker
       // nextButtonVisible: Whether or not the next button should be visible. Eg. It should be hidden in the final step.
       // previousButtonVisible: Whether or not the previous button should be visible. Eg. It should be hidden in the first and final steps.
+      // progress: The value that indicates the progress in percentage of the symptom tracker
       return {
         previousButtonVisible:
           currentStep > 0 && currentStep < steps.length - 1,
         nextButtonVisible: currentStep < steps.length - 1,
         Component: steps[currentStep].Component,
         currentValue,
+        progress: currentStep / ((steps.length - 1) as Double),
       };
     }, [currentStep]);
 
   const handleValueChange = (value: SymptomValue) => {
     let field = steps[currentStep].symptomField;
     if (field) {
-      // console.log("value changed", field, value);
       setSymptom({ ...symptom, [field]: value });
     }
   };
@@ -117,6 +114,8 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   return (
     <Container>
       <Header>
+        {/* Shows how far along you are in the symptom tracker. */}
+        <Progress progress={progress} />
         <CloseButton onPress={handleClosePress}>
           <Ionicons name="close" size={32} color="black" />
         </CloseButton>
