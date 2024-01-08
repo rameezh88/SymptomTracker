@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { colors } from "../../../constants/colors";
+import { StyleSheet } from "react-native";
 
 export const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -25,3 +26,10 @@ export const DescriptionEntryField = styled.TextInput.attrs<{
   border: 1px solid
     ${(props) => (props.focused ? colors.secondaryDark : colors.secondary)};
 `;
+
+export const styles = StyleSheet.create({
+  animationContainer: {
+    width: "100%",
+    flex: 1,
+  },
+});
