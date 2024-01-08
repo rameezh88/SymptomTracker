@@ -14,6 +14,7 @@ export const DescriptionEntryField = styled.TextInput.attrs<{
 }>(() => ({
   multiline: true,
   autoCorrect: false,
+  textAlignVertical: "top",
 }))`
   flex: 1;
   font-size: 16px;

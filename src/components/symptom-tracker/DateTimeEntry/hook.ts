@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { DateTimeEntryProps } from ".";
 import { DateTimePickerMode } from "../../DateTimePickerDialog";
 import { format } from "date-fns";
+import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 
 const useHook = ({ value, onValueChange }: DateTimeEntryProps) => {
   // Date value initialed if it has already been set
@@ -47,8 +48,9 @@ const useHook = ({ value, onValueChange }: DateTimeEntryProps) => {
 
   // Calculates the date and time string based on the date and time value selected using
   // preset formats
-  const { dateString, timeString } = useMemo(
+  const { dateString, timeString, datePickerValue } = useMemo(
     () => ({
+      datePickerValue: date ? date : time,
       dateString: date ? format(date, "dd-MM-yyyy") : "Pick a date",
       timeString: time ? format(time, "HH:mm") : "Pick a time",
     }),
@@ -73,7 +75,21 @@ const useHook = ({ value, onValueChange }: DateTimeEntryProps) => {
     }
   }, [date, time]);
 
+  const onAndroidDatePickerChange = (
+    event: DateTimePickerEvent,
+    date?: Date
+  ) => {
+    setDateTimePickerVisible(false);
+
+    if (event.type === "set") {
+      if (date) {
+        onDateValueSelected(date, dateTimePickerMode);
+      }
+    }
+  };
+
   return {
+    datePickerValue,
     dateString,
     timeString,
     dateTimePickerVisible,
@@ -81,6 +97,7 @@ const useHook = ({ value, onValueChange }: DateTimeEntryProps) => {
     handleOpenDateTimePicker,
     hideDialog,
     onDateValueSelected,
+    onAndroidDatePickerChange,
   };
 };
 
