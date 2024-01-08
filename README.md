@@ -46,6 +46,12 @@ Run the project using the following command.
 expo start
 ```
 
+or
+
+```bash
+npx expo start
+```
+
 Then, once the Metro bundler starts, press `i` to start up the `iOS` app in the Simulator, or press `a` to run the application in the Android emulator.
 
 ## Features
@@ -85,3 +91,17 @@ There are two buttons at the bottom to navigate between previous and next steps.
 There is a progress bar at the top that shows the progress.
 
 Animations have been added to most components as specified in the case study.
+
+## Potential Improvements
+
+1. Better handling of keyboard events in relation to the animations. The animations are jittery sometimes on Android when the keyboard hides.
+2. Usage of `redux` or `mobx` for state management and persisting of the symptom data.
+3. Better UI design and fonts.
+4. Better animation for the date-picker dialog.
+5. Better handling of the default date and time. Now the time defaults to `00:00` at times.
+6. Better handling of keyboard buttons in relation to next button in the symptom tracker. For example, the keyboard "done" button would take you to the next step.
+
+## Future Features
+
+1. Ability to edit and delete a symptoms, which could be done using the list items in the home screen. Preferably by adding a swipe-left-to-reveal feature to show the corresponding "edit" and "delete" buttons.
+2. Integration with an API to with CRUD capabilities.
