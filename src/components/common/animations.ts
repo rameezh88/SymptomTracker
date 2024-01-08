@@ -1,5 +1,6 @@
 import { FadeInDown, SharedValue, withTiming } from "react-native-reanimated";
 
+// Shared default entry animation for several fields
 export const entryAnimation = FadeInDown;
 
 export const clickAnimation = (pressed: SharedValue<boolean>) => {

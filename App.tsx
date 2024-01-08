@@ -9,8 +9,10 @@ import SymptomsContextProvider from "./src/contexts/providers/SymptomsContextPro
 export default function App() {
   return (
     <NavigationContainer>
+      {/* SymptomsContextProvider: Context provider for SymptomsContext that stores tracked symptoms */}
       <SymptomsContextProvider>
         <View style={styles.container}>
+          {/* PaperProvider: Provider to display components like dialog by react-native-paper */}
           <PaperProvider>
             <StatusBar style="light" />
             <RootNavigator />

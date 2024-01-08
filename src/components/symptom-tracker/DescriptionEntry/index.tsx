@@ -25,6 +25,8 @@ const DescriptionEntry: React.FC<DescriptionEntryProps> = ({
         style={styles.animationContainer}
         entering={entryAnimation.delay(100)}
       >
+        {/* Field to enter free text describing the symptom
+        This field is optional */}
         <DescriptionEntryField
           focused={inputFocused}
           placeholder="Describe what you felt..."

@@ -35,6 +35,7 @@ const SeveritySelector: React.FC<SeveritySelectorProps> = ({
         return severityScaleInitalValue;
       }
 
+      // Restore the selection state if it was previously saved
       return severityScaleInitalValue.map((item) => {
         if (item.severity === value) {
           return {
@@ -73,6 +74,7 @@ const SeveritySelector: React.FC<SeveritySelectorProps> = ({
         <Title>What's the severity?</Title>
       </Animated.View>
       <OptionsContainer>
+        {/* Show all severities */}
         {severityScale.map((item, index) => (
           <SeveritySelectorOption
             severityScaleItem={item}

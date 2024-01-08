@@ -2,7 +2,6 @@ import { Entypo } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 import SymptomListItem from "../../components/SymptomListItem";
-import { dummyData } from "../../dummy";
 import { RootStackParamList } from "../../navigation";
 import { AddNewSymptomButton, Container, Placeholder } from "./styles";
 import { useContext } from "react";

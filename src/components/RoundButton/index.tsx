@@ -9,6 +9,7 @@ export type RoundButtonProps = {
   disabled?: boolean;
 };
 
+// Rounded button used in the symptom tracker modal to navigate between steps.
 const RoundButton: React.FC<RoundButtonProps> = ({
   onPress,
   children,
@@ -17,6 +18,7 @@ const RoundButton: React.FC<RoundButtonProps> = ({
   const { tap, animatedStyles } = useClickAnimation();
   return (
     <GestureDetector gesture={tap}>
+      {/* Bounce animation used while tapping */}
       <Animated.View exiting={FadeOut} style={animatedStyles}>
         <Container
           disabled={disabled}

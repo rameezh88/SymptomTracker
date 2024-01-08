@@ -19,6 +19,7 @@ const SeveritySelectorOption: React.FC<SeveritySelectorOptionProps> = ({
   const { tap, animatedStyles } = useClickAnimation();
   return (
     <GestureDetector gesture={tap}>
+      {/* Animate the button when an option is selected */}
       <Animated.View entering={entryAnimation} style={animatedStyles}>
         <SeverityOptionButton
           selected={severityScaleItem.selected}

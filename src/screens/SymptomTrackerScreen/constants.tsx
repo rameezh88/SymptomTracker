@@ -12,6 +12,7 @@ export interface SymptomTrackerScreenStep {
   Component: React.FC<SymptomTrackerUpdateComponent>;
 }
 
+// Represents all the steps in the SymptomTracker along with the component to be rendered.
 export const steps: SymptomTrackerScreenStep[] = [
   {
     symptomField: SymptomEntryType.Name,

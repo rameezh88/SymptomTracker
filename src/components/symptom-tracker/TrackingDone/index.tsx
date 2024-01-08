@@ -17,7 +17,7 @@ const TrackingDone: React.FC = () => {
       <Animated.View entering={entryAnimation.duration(200)}>
         <Title>All done!</Title>
       </Animated.View>
-      {/* Show a done animation after all the steps are completed */}
+      {/* Show a done Lottie animation after all the steps are completed */}
       <AnimatedLottieView
         ref={animationRef}
         source={require("../../../assets/animations/successfully-done.json")}

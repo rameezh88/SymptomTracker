@@ -34,6 +34,7 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = (props) => {
         style={commonStyles.animationContainer}
         entering={entryAnimation.duration(200).delay(100)}
       >
+        {/* Field to pick and show only the date */}
         <DateTimeEntryFieldWrapper
           onPress={() => {
             handleOpenDateTimePicker("date");
@@ -46,6 +47,7 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = (props) => {
         style={commonStyles.animationContainer}
         entering={entryAnimation.duration(200).delay(200)}
       >
+        {/* Field to pick and show only the time */}
         <DateTimeEntryFieldWrapper
           onPress={() => {
             handleOpenDateTimePicker("time");
@@ -56,6 +58,7 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = (props) => {
       </Animated.View>
 
       {dateTimePickerVisible && Platform.OS === "android" && (
+        // Show the default date and time picker for Android
         <RNDateTimePicker
           value={datePickerValue || new Date()}
           mode={dateTimePickerMode}
@@ -63,6 +66,7 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = (props) => {
           onChange={onAndroidDatePickerChange}
         />
       )}
+      {/* Show the date and time picker in a custom dialog for iOS. */}
       <DateTimePickerDialog
         hideDialog={hideDialog}
         onValueSelected={onDateValueSelected}

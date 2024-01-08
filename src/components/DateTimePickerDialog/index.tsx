@@ -5,13 +5,14 @@ import RNDateTimePicker, {
 import React, { useState } from "react";
 import { Pressable, Text } from "react-native";
 import { Button, Dialog, Portal } from "react-native-paper";
-import styled from "styled-components/native";
 import { Title } from "../common";
+import { TitleContainer } from "./styles";
 
 export type DateTimePickerMode = "date" | "time";
 
 export type DateTimePickerDialogProps = {
   visible: boolean;
+  // Determines which mode the dialog is in. date or time.
   mode: DateTimePickerMode;
   hideDialog: () => void;
   onValueSelected: (date: Date, mode: DateTimePickerMode) => void;
@@ -23,17 +24,18 @@ const DateTimePickerDialog: React.FC<DateTimePickerDialogProps> = ({
   hideDialog,
   onValueSelected,
 }) => {
-  const [rawDateValue, setRawDateValue] = useState<Date>(new Date());
+  const [dateValue, setDateValue] = useState<Date>(new Date());
 
   const onDateChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
     if (selectedDate) {
-      setRawDateValue(selectedDate);
+      setDateValue(selectedDate);
     }
   };
 
   const handleDonePress = () => {
-    if (rawDateValue) {
-      onValueSelected(rawDateValue, mode);
+    if (dateValue) {
+      // Set the date to the parent state.
+      onValueSelected(dateValue, mode);
     }
     hideDialog();
   };
@@ -54,7 +56,7 @@ const DateTimePickerDialog: React.FC<DateTimePickerDialogProps> = ({
         <Dialog.Content>
           <RNDateTimePicker
             testID="dateTimePicker"
-            value={rawDateValue || new Date()}
+            value={dateValue || new Date()}
             mode={mode}
             is24Hour={true}
             maximumDate={new Date()}
@@ -71,12 +73,5 @@ const DateTimePickerDialog: React.FC<DateTimePickerDialogProps> = ({
     </Portal>
   );
 };
-
-const TitleContainer = styled.View`
-  flex-direction: "row";
-  margin-left: 25px;
-  margin-right: 20px;
-  justify-content: space-between;
-`;
 
 export default DateTimePickerDialog;
