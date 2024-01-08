@@ -5,6 +5,7 @@ import { SymptomEntryType } from "../../types";
 import DateTimeEntry from "../../components/symptom-tracker/DateTimeEntry";
 import SeveritySelector from "../../components/symptom-tracker/SeveritySelector";
 import DescriptionEntry from "../../components/symptom-tracker/DescriptionEntry";
+import TrackingDone from "../../components/symptom-tracker/TrackingDone";
 
 export interface SymptomTrackerScreenStep {
   symptomField?: SymptomEntryType;
@@ -29,6 +30,6 @@ export const steps: SymptomTrackerScreenStep[] = [
     Component: DescriptionEntry,
   },
   {
-    Component: () => <Text>All done!</Text>,
+    Component: TrackingDone,
   },
 ];

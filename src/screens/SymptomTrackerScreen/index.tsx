@@ -11,6 +11,8 @@ import {
   CloseButton,
   Container,
   DummyView,
+  FinishButton,
+  FinishButtonText,
   Header,
   NextButton,
   PreviousButton,
@@ -124,6 +126,11 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
         <Component value={currentValue} onValueChange={handleValueChange} />
       </TopContainer>
       <BottomContainer>
+        {!nextButtonVisible && !previousButtonVisible && (
+          <FinishButton onPress={handleClosePress}>
+            <FinishButtonText>Finish</FinishButtonText>
+          </FinishButton>
+        )}
         {previousButtonVisible ? (
           <PreviousButton onPress={handlePreviousPress}>
             <FontAwesome name="arrow-left" size={24} color="white" />

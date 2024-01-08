@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import RoundButton from "../../components/RoundButton";
-import { ProgressBar } from "react-native-paper";
+import { ProgressBar, Text } from "react-native-paper";
 import { colors } from "../../constants/colors";
 import { Dimensions } from "react-native";
 
@@ -54,3 +54,18 @@ export const CloseButton = styled.Pressable``;
 export const PreviousButton = styled(RoundButton)``;
 
 export const NextButton = styled(RoundButton)``;
+
+export const FinishButton = styled.Pressable`
+  background-color: ${colors.primary};
+  height: 50px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const FinishButtonText = styled(Text).attrs(() => ({
+  variant: "headlineSmall",
+}))`
+  color: white;
+`;
