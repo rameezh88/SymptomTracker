@@ -20,6 +20,10 @@ import {
   TopContainer,
 } from "./styles";
 import SymptomsContext from "../../contexts/SymptomsContext";
+import Animated, { FadeIn } from "react-native-reanimated";
+import { commonStyles } from "../../components/common";
+import { GestureDetector } from "react-native-gesture-handler";
+import useClickAnimation from "../../components/common/hooks/useClickAnimation";
 
 interface SymptomTrackerScreenProps {
   navigation: NavigationProp<RootStackParamList, "SymptomTrackerScreen">;
@@ -46,6 +50,9 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
     severity: null,
     description: "",
   });
+
+  const { tap, animatedStyles: bounceClickAnimatedStyles } =
+    useClickAnimation();
 
   const handlePreviousPress = () => {
     // Go to the previous symptom tracking step
@@ -135,9 +142,20 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
       </TopContainer>
       <BottomContainer>
         {!nextButtonVisible && !previousButtonVisible && (
-          <FinishButton onPress={handleClosePress}>
-            <FinishButtonText>Finish</FinishButtonText>
-          </FinishButton>
+          // Finish button with click animation
+          <GestureDetector gesture={tap}>
+            <Animated.View
+              style={[
+                commonStyles.animationContainer,
+                bounceClickAnimatedStyles,
+              ]}
+              entering={FadeIn}
+            >
+              <FinishButton onPress={handleClosePress}>
+                <FinishButtonText>Finish</FinishButtonText>
+              </FinishButton>
+            </Animated.View>
+          </GestureDetector>
         )}
         {previousButtonVisible ? (
           <PreviousButton onPress={handlePreviousPress}>

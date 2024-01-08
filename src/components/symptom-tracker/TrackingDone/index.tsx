@@ -2,6 +2,8 @@ import AnimatedLottieView from "lottie-react-native";
 import { useEffect, useRef } from "react";
 import { Title } from "../../common";
 import { Container } from "./styles";
+import Animated from "react-native-reanimated";
+import { entryAnimation } from "../../common/animations";
 
 const TrackingDone: React.FC = () => {
   const animationRef = useRef<AnimatedLottieView>(null);
@@ -12,7 +14,9 @@ const TrackingDone: React.FC = () => {
 
   return (
     <Container>
-      <Title>All done!</Title>
+      <Animated.View entering={entryAnimation.duration(200)}>
+        <Title>All done!</Title>
+      </Animated.View>
       {/* Show a done animation after all the steps are completed */}
       <AnimatedLottieView
         ref={animationRef}

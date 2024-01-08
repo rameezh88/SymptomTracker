@@ -1,3 +1,6 @@
+import { GestureDetector } from "react-native-gesture-handler";
+import Animated, { FadeOut } from "react-native-reanimated";
+import useClickAnimation from "../common/hooks/useClickAnimation";
 import { Container } from "./styles";
 
 export type RoundButtonProps = {
@@ -11,17 +14,22 @@ const RoundButton: React.FC<RoundButtonProps> = ({
   children,
   disabled = false,
 }) => {
+  const { tap, animatedStyles } = useClickAnimation();
   return (
-    <Container
-      disabled={disabled}
-      onPress={() => {
-        if (!disabled) {
-          onPress();
-        }
-      }}
-    >
-      {children}
-    </Container>
+    <GestureDetector gesture={tap}>
+      <Animated.View exiting={FadeOut} style={animatedStyles}>
+        <Container
+          disabled={disabled}
+          onPress={() => {
+            if (!disabled) {
+              onPress();
+            }
+          }}
+        >
+          {children}
+        </Container>
+      </Animated.View>
+    </GestureDetector>
   );
 };
 
