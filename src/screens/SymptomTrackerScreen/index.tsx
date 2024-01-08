@@ -1,7 +1,7 @@
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
 import { isEmpty } from "lodash";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { RootStackParamList } from "../../navigation";
 import { Symptom, SymptomEntryType, SymptomSeverity } from "../../types";
@@ -43,6 +43,8 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   const { addSymptom } = useContext(SymptomsContext);
   // Keeps track of the current step in the symptom tracker.
   const [currentStep, setCurrentStep] = useState(0);
+  // Toggle to delay the rendering a bit, so that the animation can play later
+  const [renderContent, setRenderContent] = useState(false);
   // State object where all the symptom fields will be recorded
   const [symptom, setSymptom] = useState<Symptom>({
     name: null,
@@ -50,6 +52,13 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
     severity: null,
     description: "",
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("Rendering to true");
+      setRenderContent(true);
+    }, 200);
+  }, []);
 
   const { tap, animatedStyles: bounceClickAnimatedStyles } =
     useClickAnimation();
@@ -138,7 +147,9 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
         </CloseButton>
       </Header>
       <TopContainer>
-        <Component value={currentValue} onValueChange={handleValueChange} />
+        {renderContent && (
+          <Component value={currentValue} onValueChange={handleValueChange} />
+        )}
       </TopContainer>
       <BottomContainer>
         {!nextButtonVisible && !previousButtonVisible && (
