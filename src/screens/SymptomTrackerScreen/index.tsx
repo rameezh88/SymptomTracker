@@ -1,7 +1,7 @@
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
 import { isEmpty } from "lodash";
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { RootStackParamList } from "../../navigation";
 import { Symptom, SymptomEntryType, SymptomSeverity } from "../../types";
@@ -19,6 +19,7 @@ import {
   Progress,
   TopContainer,
 } from "./styles";
+import SymptomsContext from "../../contexts/SymptomsContext";
 
 interface SymptomTrackerScreenProps {
   navigation: NavigationProp<RootStackParamList, "SymptomTrackerScreen">;
@@ -34,6 +35,8 @@ export interface SymptomTrackerUpdateComponent {
 const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
   navigation,
 }) => {
+  // Get function to add symptom to symptom tracked in the wrapping context
+  const { addSymptom } = useContext(SymptomsContext);
   // Keeps track of the current step in the symptom tracker.
   const [currentStep, setCurrentStep] = useState(0);
   // State object where all the symptom fields will be recorded
@@ -54,6 +57,11 @@ const SymptomTrackerScreen: React.FC<SymptomTrackerScreenProps> = ({
     // Go to the next symptom tracking step
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
+    }
+
+    if (currentStep === steps.length - 2) {
+      // If we're on the last entry step (description), save the symptom
+      addSymptom(symptom);
     }
   };
 

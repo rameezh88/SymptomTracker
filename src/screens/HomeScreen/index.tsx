@@ -5,19 +5,21 @@ import SymptomListItem from "../../components/SymptomListItem";
 import { dummyData } from "../../dummy";
 import { RootStackParamList } from "../../navigation";
 import { AddNewSymptomButton, Container, Placeholder } from "./styles";
+import { useContext } from "react";
+import SymptomsContext from "../../contexts/SymptomsContext";
 
 interface HomeScreenProps {
   navigation: NavigationProp<RootStackParamList, "HomeScreen">;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
-  // const [symptoms, setSymptoms] = useState<Symptom[]>(dummyData);
-  const symptoms = dummyData;
+  // Get stored symptoms from the wrapping context
+  const { symptoms } = useContext(SymptomsContext);
 
   return (
     <Container>
       {/* Show symptoms when we have them */}
-      {symptoms && (
+      {symptoms.length > 0 && (
         <FlashList
           data={symptoms}
           renderItem={({ item }) => <SymptomListItem symptom={item} />}
@@ -25,11 +27,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         />
       )}
       {/* Show a placeholder when we have no symptoms */}
-      {!symptoms && (
-        <Placeholder>
-          {`This is where your tracked symptoms show up.\n\nClick on the button below to add a new symptom!`}{" "}
-        </Placeholder>
-      )}
+      {!symptoms ||
+        (symptoms.length === 0 && (
+          <Placeholder>
+            {`This is where your tracked symptoms show up.\n\nClick on the button below to add a new symptom!`}{" "}
+          </Placeholder>
+        ))}
       {/* Add symptom button that navigates to the symptom-tracker modal */}
       <AddNewSymptomButton
         onPress={() => navigation.navigate("SymptomTrackerScreen")}

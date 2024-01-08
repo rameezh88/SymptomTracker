@@ -3,9 +3,11 @@ import { colors } from "../../constants/colors";
 
 export const Container = styled.View`
   flex: 1;
+  justify-content: center;
 `;
 
 export const Placeholder = styled.Text`
+  align-self: center;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;

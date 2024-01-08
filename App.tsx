@@ -4,16 +4,19 @@ import { StyleSheet, View } from "react-native";
 import "react-native-gesture-handler";
 import { PaperProvider } from "react-native-paper";
 import RootNavigator from "./src/navigation";
+import SymptomsContextProvider from "./src/contexts/providers/SymptomsContextProvider";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <PaperProvider>
-          <StatusBar style="light" />
-          <RootNavigator />
-        </PaperProvider>
-      </View>
+      <SymptomsContextProvider>
+        <View style={styles.container}>
+          <PaperProvider>
+            <StatusBar style="light" />
+            <RootNavigator />
+          </PaperProvider>
+        </View>
+      </SymptomsContextProvider>
     </NavigationContainer>
   );
 }
