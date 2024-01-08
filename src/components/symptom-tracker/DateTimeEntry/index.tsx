@@ -2,9 +2,11 @@ import { Keyboard } from "react-native";
 import { Text } from "react-native-paper";
 import { SymptomTrackerUpdateComponent } from "../../../screens/SymptomTrackerScreen";
 import DateTimePickerDialog from "../../DateTimePickerDialog";
-import { Title } from "../../common";
+import { Title, commonStyles } from "../../common";
 import useHook from "./hook";
 import { Container, DateTimeEntryFieldWrapper } from "./styles";
+import Animated from "react-native-reanimated";
+import { entryAnimation } from "../../common/animations";
 
 export interface DateTimeEntryProps extends SymptomTrackerUpdateComponent {}
 
@@ -22,21 +24,33 @@ const DateTimeEntry: React.FC<DateTimeEntryProps> = (props) => {
 
   return (
     <Container onTouchStart={Keyboard.dismiss}>
-      <Title>When did this happen?</Title>
-      <DateTimeEntryFieldWrapper
-        onPress={() => {
-          handleOpenDateTimePicker("date");
-        }}
+      <Animated.View entering={entryAnimation.duration(200)}>
+        <Title>When did this happen?</Title>
+      </Animated.View>
+      <Animated.View
+        style={commonStyles.animationContainer}
+        entering={entryAnimation.duration(200).delay(100)}
       >
-        <Text variant="bodyLarge">{dateString}</Text>
-      </DateTimeEntryFieldWrapper>
-      <DateTimeEntryFieldWrapper
-        onPress={() => {
-          handleOpenDateTimePicker("time");
-        }}
+        <DateTimeEntryFieldWrapper
+          onPress={() => {
+            handleOpenDateTimePicker("date");
+          }}
+        >
+          <Text variant="bodyLarge">{dateString}</Text>
+        </DateTimeEntryFieldWrapper>
+      </Animated.View>
+      <Animated.View
+        style={commonStyles.animationContainer}
+        entering={entryAnimation.duration(200).delay(200)}
       >
-        <Text variant="bodyLarge">{timeString}</Text>
-      </DateTimeEntryFieldWrapper>
+        <DateTimeEntryFieldWrapper
+          onPress={() => {
+            handleOpenDateTimePicker("time");
+          }}
+        >
+          <Text variant="bodyLarge">{timeString}</Text>
+        </DateTimeEntryFieldWrapper>
+      </Animated.View>
       <DateTimePickerDialog
         hideDialog={hideDialog}
         onValueSelected={onDateValueSelected}
