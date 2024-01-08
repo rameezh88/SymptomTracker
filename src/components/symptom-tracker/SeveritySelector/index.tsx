@@ -1,16 +1,13 @@
 import { useState } from "react";
-import { SymptomSeverity } from "../../../types";
-import {
-  Container,
-  OptionsContainer,
-  Severity,
-  SeverityOptionButton,
-  SeverityTitle,
-} from "./styles";
+import Animated, { ZoomIn } from "react-native-reanimated";
 import { SymptomTrackerUpdateComponent } from "../../../screens/SymptomTrackerScreen";
+import { SymptomSeverity } from "../../../types";
 import { Title } from "../../common";
+import { entryAnimation } from "../../common/animations";
+import { Container, OptionsContainer } from "./styles";
+import SeveritySelectorOption from "../SeveritySelectorOption";
 
-interface SeverityScaleItem {
+export interface SeverityScaleItem {
   title: string;
   severity: SymptomSeverity;
   selected: boolean;
@@ -72,19 +69,17 @@ const SeveritySelector: React.FC<SeveritySelectorProps> = ({
 
   return (
     <Container>
-      <Title>What's the severity?</Title>
+      <Animated.View entering={entryAnimation.duration(200)}>
+        <Title>What's the severity?</Title>
+      </Animated.View>
       <OptionsContainer>
         {severityScale.map((item, index) => (
-          <SeverityOptionButton
-            selected={item.selected}
-            onPress={() => {
-              handleSeveritySelected(item);
-            }}
+          <SeveritySelectorOption
+            severityScaleItem={item}
+            entryAnimation={ZoomIn.duration(200 + index * 60)}
             key={index}
-          >
-            <Severity severity={item.severity} />
-            <SeverityTitle>{item.title}</SeverityTitle>
-          </SeverityOptionButton>
+            handleSeveritySelected={handleSeveritySelected}
+          />
         ))}
       </OptionsContainer>
     </Container>
